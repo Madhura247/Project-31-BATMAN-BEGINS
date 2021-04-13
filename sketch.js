@@ -5,7 +5,6 @@ var engine, world;
 var drops = [];
 var maxdrops = 100;
 var umbrella;
-
 var thunder1, thunder2, thunder3, thunder4;
 
 function preload(){
@@ -48,7 +47,7 @@ function setup(){
         thunder.scale = random(0.3,0.6);
         thunder.setLifetime = 10;
         }
-    
+
 }
 
 function draw(){
@@ -59,6 +58,12 @@ function draw(){
     for ( i = 0;  i < maxdrops; i++) {
         drops[i].display();
         drops[i].updateY();
+    }
+
+    var thunderinterval = frameCount;
+
+    if(thunderinterval + 10 === frameCount && thunder){ 
+        thunder.destroy(); 
     }
 
     umbrella.display();
