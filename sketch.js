@@ -29,9 +29,25 @@ function setup(){
 
     umbrella = new Umbrella(200, 500);
 
-    rand = Math.round(random(1,4));
+    
+    
+
+}
+
+function draw(){
+ 
+    background(0);
+    Engine.update(engine);
+    
+    for ( i = 0;  i < maxdrops; i++) {
+        drops[i].display();
+        drops[i].updateY();
+    }
+
+    var thunderCreatedFrame=frameCount;
+    var rand = Math.round(random(1,4));
+
     if(frameCount%80===0) {
-        thunderCreatedFrame=frameCount;
         thunder = createSprite(random(10,370), random(10,30), 10, 10);
         switch(rand) {
             case 1: thunder.addImage(thunder1);
@@ -48,23 +64,11 @@ function setup(){
         thunder.setLifetime = 10;
         }
 
-}
+    if(thunderCreatedFrame + 10 === frameCount && thunder){ 
+        thunder.destroyEach(); 
+    }
 
-function draw(){
- 
-    background(0);
-    Engine.update(engine);
     
-    for ( i = 0;  i < maxdrops; i++) {
-        drops[i].display();
-        drops[i].updateY();
-    }
-
-    var thunderinterval = frameCount;
-
-    if(thunderinterval + 10 === frameCount && thunder){ 
-        thunder.destroy(); 
-    }
 
     umbrella.display();
     drawSprites();
