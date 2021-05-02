@@ -44,7 +44,7 @@ function draw(){
         drops[i].updateY();
     }
 
-    var thunderCreatedFrame=frameCount;
+    //var thunderCreatedFrame=frameCount;
     var rand = Math.round(random(1,4));
 
     if(frameCount%80===0) {
@@ -61,12 +61,13 @@ function draw(){
             default:break;
         }
         thunder.scale = random(0.3,0.6);
-        thunder.setLifetime = 10;
+        var thunderCreatedFrame=frameCount;
+        if(thunderCreatedFrame + 10 === frameCount && thunder){ 
+            thunder.destroyEach(); 
+        }
         }
 
-    if(thunderCreatedFrame + 10 === frameCount && thunder){ 
-        thunder.destroyEach(); 
-    }
+    
 
     
 
