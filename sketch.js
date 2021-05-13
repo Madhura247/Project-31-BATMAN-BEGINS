@@ -6,6 +6,7 @@ var drops = [];
 var maxdrops = 100;
 var umbrella;
 var thunder1, thunder2, thunder3, thunder4;
+var thunderCreatedFrame;
 
 function preload(){
 
@@ -47,7 +48,9 @@ function draw(){
     //var thunderCreatedFrame=frameCount;
     var rand = Math.round(random(1,4));
 
-    if(frameCount%80===0) {
+    if(frameCount % 80 === 0) {
+        thunderCreatedFrame = frameCount;
+
         thunder = createSprite(random(10,370), random(10,30), 10, 10);
         switch(rand) {
             case 1: thunder.addImage(thunder1);
@@ -61,11 +64,12 @@ function draw(){
             default:break;
         }
         thunder.scale = random(0.3,0.6);
-        var thunderCreatedFrame=frameCount;
-        if(thunderCreatedFrame + 10 === frameCount && thunder){ 
-            thunder.destroyEach(); 
+    }
+        //var thunderCreatedFrame=frameCount;
+        if(thunderCreatedFrame + 50 === frameCount && thunder){ 
+            thunder.destroy(); 
         }
-        }
+        
 
     
 
